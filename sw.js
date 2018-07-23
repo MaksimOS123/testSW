@@ -30,6 +30,7 @@ function networkOrCache(request) {
 // Наш Fallback вместе с нашим собсвенным Динозавриком.
 const FALLBACK =
     '<script>console.log(\"Блин. Чувак. У тебя инета нет((\");</script>\n' +
+    '<link rel=\"stylesheet\" type=\"text/css\" href=\"/MaksOn/css/style.css\">\n' +
     '<div>\n' +
     '    <div>App Title</div>\n' +
     '    <div>you are offline</div>\n' +
