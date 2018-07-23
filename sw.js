@@ -46,7 +46,7 @@ const Error404 =
       ' <body>\n' +
       '  <div id =\"header\">\n' +
       '   <div id =\"header-zglv\">\n' +
-      '    <h1><a href="/" class="home">ЧТО ЭТО, ЕПТ?</a></h1>\n' +
+      '    <h1><a href="/testSW/" class="home">ЧТО ЭТО, ЕПТ?</a></h1>\n' +
       '   </div>\n' +
       '  </div>\n' +
       '   <table>\n' +
