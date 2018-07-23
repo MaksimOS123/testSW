@@ -36,10 +36,12 @@ const FALLBACK =
 
 // Он никогда не упадет, т.к мы всегда отдаем заранее подготовленные данные.
 function useFallback() {
-    console.log('Невозможно подключится к серверу. Выдаю сохраненные данные.');
-    return Promise.resolve(new Response(FALLBACK, { headers: {
-        'Content-Type': 'text/html; charset=utf-8'
-    }}));
+    if (!navigator.onLine) {
+	    console.log('Невозможно подключится к серверу. Выдаю сохраненные данные.');
+        return Promise.resolve(new Response(FALLBACK, { headers: {
+            'Content-Type': 'text/html; charset=utf-8'
+        }}));		
+	}
 }
 
 function fromCache(request) {
