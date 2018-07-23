@@ -1,20 +1,23 @@
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8">  <!--Устанавливаем кодировку utf-8-->
     <title>SW TEST</title>
-    <link rel="stylesheet" type="text/css" href="/testSW/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/testSW/css/style.css">  <!--Подключаем стили-->
   </head>
   <body>
     <script>
-      if ('serviceWorker' in navigator) {
-          // Весь код регистрации у нас асинхронный.
-          navigator.serviceWorker.register('./sw.js')
+      if ('serviceWorker' in navigator) {  //Прверяем поддержку Service Worker в браузере
+          navigator.serviceWorker.register('./sw.js')  //Регистрируем Serice Worker
             .then(() => navigator.serviceWorker.ready.then((worker) => {
               worker.sync.register('syncdata');
             }))
             .catch((err) => console.log(err));
       }
     </script>
-    <h1>Hello</h1>
+    <div id="offline"> <!--Наше сообщение, об отключении интернета-->
+      <h1>Хей! Привет)<h1>
+      <h2>В общем. Эта страница, которую ты видишь с помощью интернета...<h2>
+      <h3>Давай с тобой поговорим без интернета, ок?) Для этого отключи страницу и перезагрузи эту страницу)<h3>
+    </div>
   </body>
 </html>
