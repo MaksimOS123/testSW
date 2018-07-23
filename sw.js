@@ -33,11 +33,12 @@ function networkOrCache(request) {
 
 //Страницу, которую будем выводить, когда у нас нет интернета.
 const FALLBACK =
-    '<script>console.log(\"Блин. Чувак. У тебя инета нет((\");</script>\n' +
+    '<script>console.log(\"Блин. Чувак. У тебя инета нет((\");</script>\n' + //Просто вывод в консоль, о том, что у пользователя нет интернета.
     '<link rel="stylesheet" type="text/css" href="/testSW/css/style.css">\n' +
-    '<div>\n' +
-    '    <div>App Title</div>\n' +
-    '    <div>you are offline</div>\n' +
+    '<div id=\"off\">\n' +
+    '    <h1>Хей. Молодец!)<h1>\n' +
+    '    <h3>Тебе наверно интересно как это все работает, да?) Что же. Я дам тебе исходники))<h3><p><p>\n' +
+    '    <p><p><h5>Исходники, кншн, на GitHub: https://github.com/MaksimOS123/testSW<h5>\n' +
     '</div>';
 
 //А это страница ошибки 404. Т.к. я пользуюсь GitHub у меня не работает .htaccess. Ну или у меня руки кривые)
