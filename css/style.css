@@ -320,6 +320,7 @@ object{max-width:100%;}
 #focus span:nth-child(4n+1) .focus-box .red-border-bottom:before{background:#e96656;}
 #focus span:nth-child(4n+2) .focus-box .red-border-bottom:before{background:#34d293;}
 #focus span:nth-child(4n+3) .focus-box .red-border-bottom:before{background:#3ab0e2;}
+#offline{position:absolute; margin-top: 100px; margin-left: 25%; margin-right: 25%; width: 50%; margin-bottom: 25%; background: #181e1e; color: #f6f6f6}
 #focus span:nth-child(4n+4) .focus-box .red-border-bottom:before{background:#f7d861;}
 .focus-box h3{display:inline-block;float:none;position:relative;width:auto;margin-bottom:15px;margin-bottom:30px;color:#404040;background:none;font-size:17px;font-weight:bold;text-transform:uppercase;}
 .focus-box p{color:#808080;font-size:14px;}
