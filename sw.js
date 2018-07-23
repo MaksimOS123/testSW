@@ -5,7 +5,7 @@ self.addEventListener('install', (event) => {
     event.waitUntil(
         caches
             .open(CACHE)
-            .then((cache) => cache.addAll(['/testSW/img/background']))
+            .then((cache) => cache.addAll(['./img/background']))
             // `skipWaiting()` необходим, потому что мы хотим активировать SW
             // и контролировать его сразу, а не после перезагрузки.
             .then(() => self.skipWaiting())
