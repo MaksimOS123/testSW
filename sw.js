@@ -2,8 +2,14 @@ const CACHE = 'offline-fallback-v1';
 
 // При установке воркера мы должны закешировать часть данных (статику).
 self.addEventListener('install', (event) => {
-    console.log('Установлен\n');
-    self.skipWaiting();
+    event.waitUntil(
+        caches
+            .open(CACHE)
+            .then((cache) => cache.addAll(['/testSW/css/style.css']))
+            // `skipWaiting()` необходим, потому что мы хотим активировать SW
+            // и контролировать его сразу, а не после перезагрузки.
+            .then(() => self.skipWaiting())
+    );
 });
 
 self.addEventListener('activate', (event) => {
@@ -15,8 +21,6 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', function(event) {
     console.log('Происходит запрос на сервер');
-    // Можете использовать любую стратегию описанную выше.
-    // Если она не отработает корректно, то используейте `Embedded fallback`.
     event.respondWith(networkOrCache(event.request)
         .catch(() => useFallback()));
 });
@@ -27,15 +31,17 @@ function networkOrCache(request) {
         .catch(() => fromCache(request));
 }
 
-// Наш Fallback вместе с нашим собсвенным Динозавриком.
+//Страницу, которую будем выводить, когда у нас нет интернета.
 const FALLBACK =
     '<script>console.log(\"Блин. Чувак. У тебя инета нет((\");</script>\n' +
+    '<link rel="stylesheet" type="text/css" href="/testSW/css/style.css">\n' +
     '<div>\n' +
     '    <div>App Title</div>\n' +
     '    <div>you are offline</div>\n' +
     '</div>';
 
-const Error404 = 
+//А это страница ошибки 404. Т.к. я пользуюсь GitHub у меня не работает .htaccess. Ну или у меня руки кривые)
+const Error404 =
       '<html\n' +
       '	<head>\n' +
       '	 <title>404. Страница не найдена</title>\n' +
@@ -59,12 +65,12 @@ const Error404 =
       '	    </th><th><img src="/testSW/image/error404.jpg" align=top></th></td></table></html>';
 
 function useFallback() {
-    if (!navigator.onLine) {
+    if (!navigator.onLine) {  //Проверяем подключение к интернету. Если нет, то выводим наш FALLBACK
 	    console.log('Невозможно подключится к серверу. Выдаю сохраненные данные.');
         return Promise.resolve(new Response(FALLBACK, { headers: {
             'Content-Type': 'text/html; charset=utf-8'
-        }}));		
-    } else {
+        }}));
+    } else { //Иначе выводим ошибку 404.
 	return Promise.resolve(new Response(Error404, { headers: {
             'Content-Type': 'text/html; charset=utf-8'
         }}));
