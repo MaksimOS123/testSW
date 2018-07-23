@@ -63,7 +63,11 @@ function useFallback() {
         return Promise.resolve(new Response(FALLBACK, { headers: {
             'Content-Type': 'text/html; charset=utf-8'
         }}));		
-	}
+    } else {
+	return Promise.resolve(new Response(Error404, { headers: {
+            'Content-Type': 'text/html; charset=utf-8'
+        }}));
+    }
 }
 
 function fromCache(request) {
