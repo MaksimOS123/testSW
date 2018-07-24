@@ -38,7 +38,7 @@ const FALLBACK =
     '<script type=\'text/javascript\'>\n' +
     '  setInterval(function(){\n' +
     '    if(navigator.onLine)\n' +
-    '        location.href = \'/MaksOn/\';\n' +
+    '        location.href = \'/testSW/\';\n' +
     '  }, 1000);\n' +
     '</script>\n' +
     '<div id=\"off\">\n' +
