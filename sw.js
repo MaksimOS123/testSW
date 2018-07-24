@@ -5,7 +5,7 @@ self.addEventListener('install', (event) => {
     event.waitUntil(
         caches
             .open(CACHE)
-            .then((cache) => cache.addAll(['/testSW/css/style.css']))
+            .then((cache) => cache.addAll(['/testSW/css/style.css']))  //Тут я решил закэшировать страницы. Можно закэшировать сразу несколько файлов, просто перечислив их через запятую. Поэтому можно закэшировать к примеру две страницы, на которые можно будет заходить без интернета.
             // `skipWaiting()` необходим, потому что мы хотим активировать SW
             // и контролировать его сразу, а не после перезагрузки.
             .then(() => self.skipWaiting())
@@ -35,6 +35,12 @@ function networkOrCache(request) {
 const FALLBACK =
     '<script>console.log(\"Блин. Чувак. У тебя инета нет((\");</script>\n' + //Просто вывод в консоль, о том, что у пользователя нет интернета.
     '<link rel="stylesheet" type="text/css" href="/testSW/css/style.css">\n' +
+    '<script type=\'text/javascript\'>\n' +
+    '  setInterval(function(){\n' +
+    '    if(navigator.onLine)\n' +
+    '        location.href = \'/MaksOn/\';\n' +
+    '  }, 1000);\n' +
+    '</script>\n' +
     '<div id=\"off\">\n' +
     '    <h1>Хей. Молодец!)<h1>\n' +
     '    <h3>Тебе наверно интересно как это все работает, да?) Что же. Я дам тебе исходники))<h3><p><p>\n' +
